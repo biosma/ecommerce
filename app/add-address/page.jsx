@@ -4,7 +4,6 @@ import { assets } from '@/assets/assets';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import { useAppContext } from '@/context/AppContext';
-import { headers } from 'next/headers';
 import Image from 'next/image';
 import { useState } from 'react';
 
