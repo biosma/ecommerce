@@ -1,6 +1,6 @@
 'use client';
 
-import { assets, orderDummyData } from '@/assets/assets';
+import { assets } from '@/assets/assets';
 import Loading from '@/components/Loading';
 import Footer from '@/components/seller/Footer';
 import { useAppContext } from '@/context/AppContext';
