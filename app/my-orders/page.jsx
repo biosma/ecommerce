@@ -1,6 +1,6 @@
 'use client';
 
-import { assets, orderDummyData } from '@/assets/assets';
+import { assets } from '@/assets/assets';
 import Footer from '@/components/Footer';
 import Loading from '@/components/Loading';
 import Navbar from '@/components/Navbar';
