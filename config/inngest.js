@@ -1,3 +1,4 @@
+import Order from '@/models/Order';
 import User from '@/models/User';
 import { Inngest } from 'inngest';
 
@@ -54,5 +55,32 @@ export const syncUserDeletion = inngest.createFunction(
     const { id } = event.data;
     await connect();
     await User.findOneAndDelete(id);
+  },
+);
+
+export const createUserOrder = inngest.createFunction(
+  {
+    id: 'create-user-order',
+    batchEvents: {
+      maxSize: 5,
+      timeout: '5s',
+    },
+  },
+  { event: 'order/created' },
+  async ({ events }) => {
+    const orders = events.map((event) => {
+      return {
+        userId: event.data.userId,
+        items: event.data.items,
+        amount: event.data.amount,
+        address: event.data.address,
+        status: event.data.status,
+        date: event.data.date,
+      };
+    });
+
+    await connect();
+    await Order.insertMany(orders);
+    return { success: true, processed: orders.length, message: 'Ordenes creadas exitosamente' };
   },
 );
